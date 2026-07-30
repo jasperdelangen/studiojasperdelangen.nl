@@ -64,8 +64,16 @@ button {
   inset: 0;
   z-index: 10;
   pointer-events: none;
-  opacity: .17;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  opacity: .2;
+  background-color: transparent;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"),
+    repeating-radial-gradient(circle at 17% 23%, rgba(255,255,255,.5) 0 1px, transparent 1px 3px),
+    repeating-radial-gradient(circle at 83% 71%, rgba(255,255,255,.28) 0 1px, transparent 1px 4px);
+  background-size: 180px 180px, 5px 5px, 7px 7px;
+  background-blend-mode: screen;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .site-header {
