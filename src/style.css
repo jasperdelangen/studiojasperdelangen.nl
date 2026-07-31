@@ -66,7 +66,7 @@ button {
   inset: 0;
   z-index: 10;
   pointer-events: none;
-  opacity: .2;
+  opacity: .34;
   background-color: transparent;
   background-image:
     url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"),
@@ -76,6 +76,15 @@ button {
   background-blend-mode: screen;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  animation: analog-noise .28s steps(2, end) infinite;
+}
+
+@keyframes analog-noise {
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  25%  { background-position: 19px -13px, 1px 2px, -2px 1px; }
+  50%  { background-position: -11px 23px, -2px 1px, 1px -2px; }
+  75%  { background-position: 29px 7px, 2px -1px, -1px 2px; }
+  100% { background-position: 0 0, 0 0, 0 0; }
 }
 
 .site-header {
