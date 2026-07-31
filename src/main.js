@@ -63,13 +63,21 @@ function escapeHtml(value) {
 }
 
 function currentRoute() {
-  return window.location.hash.replace(/^#\/?/, '') || 'home'
+  const hashRoute = window.location.hash.replace(/^#\/?/, '')
+  if (hashRoute) return hashRoute
+
+  const pathRoute = window.location.pathname.split('/').filter(Boolean).pop()
+  return pathRoute || 'home'
+}
+
+function routeHref(key) {
+  return key === 'home' ? '/' : `/${key}/`
 }
 
 function navigation(active) {
   return `
     <header class="site-header">
-      <a class="wordmark" href="#/home" aria-label="Studio Jasper de Langen — home">
+      <a class="wordmark" href="/" aria-label="Studio Jasper de Langen — home">
         <span>STUDIO JASPER</span><span>DE LANGEN</span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
@@ -79,7 +87,7 @@ function navigation(active) {
         ${Object.entries(routes)
           .map(
             ([key, route], index) => `
-              <a href="#/${key}" class="${active === key ? 'active' : ''}">
+              <a href="${routeHref(key)}" class="${active === key ? 'active' : ''}">
                 <span>0${index + 1}</span>${escapeHtml(route.label)}
               </a>`
           )
@@ -115,12 +123,12 @@ function experimentGrid() {
 function studioRoutes() {
   return `
     <div class="studio-routes" aria-label="Ga verder">
-      <a class="studio-route" href="#/over">
+      <a class="studio-route" href="/over/">
         <span>01 / STUDIO</span>
         <strong>Over Jasper</strong>
         <small>Werk en maker <b aria-hidden="true">→</b></small>
       </a>
-      <a class="studio-route" href="#/panoptica">
+      <a class="studio-route" href="/panoptica/">
         <span>02 / PROJECT</span>
         <strong>Panoptica</strong>
         <small>Kunst&gt;Kijkt&lt;Terug <b aria-hidden="true">→</b></small>
@@ -133,7 +141,7 @@ function standardPage(key) {
   app.innerHTML = `
     <div class="site-shell">
       <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
-        <source src="./noise-background.mp4" type="video/mp4">
+        <source src="/noise-background.mp4" type="video/mp4">
       </video>
       ${navigation(key)}
       <main class="page">
@@ -147,7 +155,7 @@ function standardPage(key) {
               ? experimentGrid()
               : route.landing
                 ? studioRoutes()
-                : `<a class="primary-link" href="#/${route.next}">
+                : `<a class="primary-link" href="${routeHref(route.next)}">
                   <span>${escapeHtml(route.nextLabel)}</span><span aria-hidden="true">→</span>
                 </a>`
           }
@@ -166,7 +174,7 @@ function placeholderPage(title) {
   app.innerHTML = `
     <div class="site-shell">
       <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
-        <source src="./noise-background.mp4" type="video/mp4">
+        <source src="/noise-background.mp4" type="video/mp4">
       </video>
       ${navigation('experimenten')}
       <main class="page">
@@ -174,7 +182,7 @@ function placeholderPage(title) {
           <p class="eyebrow">PANOPTICA / EXPERIMENT</p>
           <h1 id="page-title">${title}</h1>
           <p class="intro">Dit experiment wordt aan het archief toegevoegd. De route en navigatie werken al.</p>
-          <a class="primary-link" href="#/experimenten">
+          <a class="primary-link" href="/experimenten/">
             <span>Terug naar experimenten</span><span aria-hidden="true">←</span>
           </a>
         </section>
