@@ -59,34 +59,34 @@ button {
     #050505;
 }
 
-.site-shell::before,
 .tracker::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 10;
   pointer-events: none;
-  opacity: .48;
+  opacity: .2;
   background-color: transparent;
   background-image:
     url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"),
     repeating-radial-gradient(circle at 17% 23%, rgba(255,255,255,.5) 0 1px, transparent 1px 3px),
-    repeating-radial-gradient(circle at 83% 71%, rgba(255,255,255,.28) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.13) 0 1px, transparent 1px 4px);
-  background-size: 180px 180px, 5px 5px, 7px 7px, 100% 4px;
+    repeating-radial-gradient(circle at 83% 71%, rgba(255,255,255,.28) 0 1px, transparent 1px 4px);
+  background-size: 180px 180px, 5px 5px, 7px 7px;
   background-blend-mode: screen;
-  filter: contrast(1.35);
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
-  animation: analog-noise .16s steps(2, end) infinite;
 }
 
-@keyframes analog-noise {
-  0%   { background-position: 0 0, 0 0, 0 0, 0 0; transform: translate3d(0, 0, 0); }
-  25%  { background-position: 37px -29px, 1px 2px, -2px 1px, 0 1px; transform: translate3d(-1px, 1px, 0); }
-  50%  { background-position: -31px 43px, -2px 1px, 1px -2px, 0 -1px; transform: translate3d(1px, -1px, 0); }
-  75%  { background-position: 59px 17px, 2px -1px, -1px 2px, 0 2px; transform: translate3d(1px, 1px, 0); }
-  100% { background-position: 0 0, 0 0, 0 0, 0 0; transform: translate3d(0, 0, 0); }
+.noise-video {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .58;
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
 .site-header {
