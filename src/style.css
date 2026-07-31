@@ -3,6 +3,7 @@
 }
 
 :root {
+  --ice: #bfe9ff;
   color-scheme: dark;
   font-family: "Courier New", Courier, monospace;
   background: #050505;
@@ -50,6 +51,7 @@ button {
 .site-shell {
   position: relative;
   min-height: 100svh;
+  overflow: hidden;
   isolation: isolate;
   background:
     linear-gradient(90deg, transparent 49.9%, rgba(255,255,255,.035) 50%, transparent 50.1%),
@@ -196,7 +198,7 @@ button {
 
 .eyebrow {
   margin: 0 0 clamp(30px, 7vh, 72px);
-  color: rgba(255,255,255,.48);
+  color: var(--ice);
   font-size: clamp(9px, 1vw, 12px);
   letter-spacing: .22em;
 }
@@ -240,6 +242,62 @@ h1 {
 
 .primary-link span {
   transition: transform .2s ease;
+}
+
+.studio-routes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(28px, 6vh, 60px);
+  border-top: 1px solid rgba(255,255,255,.34);
+  border-left: 1px solid rgba(255,255,255,.18);
+}
+
+.studio-route {
+  display: grid;
+  min-height: 144px;
+  padding: 18px;
+  border-right: 1px solid rgba(255,255,255,.18);
+  border-bottom: 1px solid rgba(255,255,255,.18);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.studio-route > span,
+.studio-route small {
+  color: rgba(255,255,255,.42);
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+.studio-route strong {
+  align-self: center;
+  font-size: clamp(18px, 2.2vw, 30px);
+  font-weight: 400;
+}
+
+.studio-route small {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.studio-route b {
+  color: var(--ice);
+  font-size: 16px;
+}
+
+.studio-route:hover,
+.studio-route:focus-visible {
+  background: var(--ice);
+  color: #050505;
+}
+
+.studio-route:hover > span,
+.studio-route:hover small,
+.studio-route:hover b,
+.studio-route:focus-visible > span,
+.studio-route:focus-visible small,
+.studio-route:focus-visible b {
+  color: #050505;
 }
 
 .page-footer {
@@ -395,10 +453,7 @@ h1 {
   }
 
   .signal {
-    top: 16%;
-    right: -18vw;
-    width: 70vw;
-    height: 70vw;
+    display: none;
   }
 
   .hero {
@@ -411,7 +466,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(42px, 15vw, 72px);
+    font-size: clamp(38px, 11vw, 54px);
     line-height: .9;
   }
 
@@ -423,6 +478,15 @@ h1 {
   .primary-link {
     margin-top: 32px;
     padding: 16px 0;
+  }
+
+  .studio-routes {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
+  }
+
+  .studio-route {
+    min-height: 112px;
   }
 
   .page-footer {
@@ -458,7 +522,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(38px, 14.5vw, 58px);
+    font-size: clamp(36px, 11vw, 46px);
   }
 }
 
