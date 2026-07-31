@@ -132,6 +132,9 @@ function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
     <div class="site-shell">
+      <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="./noise-background.mp4" type="video/mp4">
+      </video>
       ${navigation(key)}
       <main class="page">
         <div class="signal" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -162,6 +165,9 @@ function standardPage(key) {
 function placeholderPage(title) {
   app.innerHTML = `
     <div class="site-shell">
+      <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="./noise-background.mp4" type="video/mp4">
+      </video>
       ${navigation('experimenten')}
       <main class="page">
         <section class="hero compact" aria-labelledby="page-title">
