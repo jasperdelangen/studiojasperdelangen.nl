@@ -13,18 +13,17 @@ const routes = {
     eyebrow: 'STUDIO JASPER DE LANGEN / AMERSFOORT',
     title: 'Beeld. Ruis. Waarneming.',
     body:
-      'Studio Jasper de Langen maakt autonome en interactieve kunst op het snijvlak van beeld, technologie en menselijk gedrag.',
-    next: 'panoptica',
-    nextLabel: 'Betreed Panoptica'
+      'Studio Jasper de Langen werkt op het snijvlak van beeld, technologie en menselijk gedrag.',
+    landing: true
   },
   over: {
     label: 'Over Jasper',
     eyebrow: 'OVER / STUDIO',
-    title: 'Werken in het spanningsveld.',
+    title: 'Jasper de Langen.',
     body:
-      'Jasper de Langen onderzoekt hoe beelden, machines en mensen elkaar beïnvloeden. De studio is een werkplaats voor installaties, experimenten en visuele verhalen.',
-    next: 'panoptica',
-    nextLabel: 'Naar Panoptica'
+      'De studio is een werkplaats voor fotografie, video, installaties, interactieve werken en experimenten.',
+    next: 'home',
+    nextLabel: 'Terug naar de studio'
   },
   panoptica: {
     label: 'Panoptica',
@@ -54,6 +53,15 @@ const routes = {
   }
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;')
+}
+
 function currentRoute() {
   return window.location.hash.replace(/^#\/?/, '') || 'home'
 }
@@ -72,7 +80,7 @@ function navigation(active) {
           .map(
             ([key, route], index) => `
               <a href="#/${key}" class="${active === key ? 'active' : ''}">
-                <span>0${index + 1}</span>${route.label}
+                <span>0${index + 1}</span>${escapeHtml(route.label)}
               </a>`
           )
           .join('')}
@@ -104,6 +112,22 @@ function experimentGrid() {
     </div>`
 }
 
+function studioRoutes() {
+  return `
+    <div class="studio-routes" aria-label="Ga verder">
+      <a class="studio-route" href="#/over">
+        <span>01 / STUDIO</span>
+        <strong>Over Jasper</strong>
+        <small>Werk en maker <b aria-hidden="true">→</b></small>
+      </a>
+      <a class="studio-route" href="#/panoptica">
+        <span>02 / PROJECT</span>
+        <strong>Panoptica</strong>
+        <small>Kunst&gt;Kijkt&lt;Terug <b aria-hidden="true">→</b></small>
+      </a>
+    </div>`
+}
+
 function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
@@ -112,14 +136,16 @@ function standardPage(key) {
       <main class="page">
         <div class="signal" aria-hidden="true"><span></span><span></span><span></span></div>
         <section class="hero" aria-labelledby="page-title">
-          <p class="eyebrow">${route.eyebrow}</p>
-          <h1 id="page-title">${route.title}</h1>
-          <p class="intro">${route.body}</p>
+          <p class="eyebrow">${escapeHtml(route.eyebrow)}</p>
+          <h1 id="page-title">${escapeHtml(route.title)}</h1>
+          <p class="intro">${escapeHtml(route.body)}</p>
           ${
             route.experiments
               ? experimentGrid()
-              : `<a class="primary-link" href="#/${route.next}">
-                  <span>${route.nextLabel}</span><span aria-hidden="true">→</span>
+              : route.landing
+                ? studioRoutes()
+                : `<a class="primary-link" href="#/${route.next}">
+                  <span>${escapeHtml(route.nextLabel)}</span><span aria-hidden="true">→</span>
                 </a>`
           }
         </section>
