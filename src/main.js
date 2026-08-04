@@ -1,5 +1,5 @@
 import './style.css'
-import { FaceLandmarker, FilesetResolver, ObjectDetector } from '@mediapipe/tasks-vision'
+import { FaceDetector, FaceLandmarker, FilesetResolver, ObjectDetector } from '@mediapipe/tasks-vision'
 
 const app = document.querySelector('#app')
 let stopCurrentPage = () => {}
@@ -520,6 +520,7 @@ async function panopticaVisionPage() {
   const ctx = canvas.getContext('2d')
   const statusEl = document.getElementById('status')
   let detector = null
+  let faceDetector = null
   let stream = null
   let frameId = 0
   let width = 0
@@ -593,6 +594,8 @@ async function panopticaVisionPage() {
     if (video.readyState >= 2 && detector && video.currentTime !== lastVideoTime) {
       lastVideoTime = video.currentTime
       const result = detector.detectForVideo(video, now)
+      const faceResult = faceDetector?.detectForVideo(video, now)
+      const detections = [...(result.detections || []), ...(faceResult?.detections || [])]
       const scale = Math.max(width / video.videoWidth, height / video.videoHeight)
       const drawWidth = video.videoWidth * scale
       const drawHeight = video.videoHeight * scale
@@ -601,7 +604,7 @@ async function panopticaVisionPage() {
 
       ctx.clearRect(0, 0, width, height)
 
-      result.detections.forEach(detection => {
+      detections.forEach(detection => {
         if (!detection.boundingBox || !detection.categories[0]) return
         const source = detection.boundingBox
         const box = {
@@ -611,14 +614,15 @@ async function panopticaVisionPage() {
           h: source.height * scale
         }
         const category = detection.categories[0]
-        drawCornerBox(box, category.displayName || category.categoryName || 'object', category.score)
+        const isFace = faceResult?.detections?.includes(detection)
+        drawCornerBox(box, isFace ? 'FACE' : category.displayName || category.categoryName || 'object', category.score)
       })
 
       const frameFps = 1000 / Math.max(now - lastFrame, 1)
       lastFrame = now
       smoothFps = smoothFps ? smoothFps * .9 + frameFps * .1 : frameFps
-      drawInterface(result.detections.length, smoothFps)
-      statusEl.textContent = result.detections.length ? 'TRACKING' : 'SEARCHING'
+      drawInterface(detections.length, smoothFps)
+      statusEl.textContent = detections.length ? 'TRACKING' : 'SEARCHING'
     }
     frameId = requestAnimationFrame(loop)
   }
@@ -651,6 +655,7 @@ async function panopticaVisionPage() {
     window.removeEventListener('keydown', handleKey)
     stream?.getTracks().forEach(track => track.stop())
     detector?.close()
+    faceDetector?.close()
   }
 
   try {
@@ -670,6 +675,14 @@ async function panopticaVisionPage() {
       runningMode: 'VIDEO',
       scoreThreshold: .15,
       maxResults: 12
+    })
+    faceDetector = await FaceDetector.createFromOptions(vision, {
+      baseOptions: {
+        modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite',
+        delegate: 'CPU'
+      },
+      runningMode: 'VIDEO',
+      minDetectionConfidence: .25
     })
     statusEl.textContent = 'SEARCHING'
     frameId = requestAnimationFrame(loop)
