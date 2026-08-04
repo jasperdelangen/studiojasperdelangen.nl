@@ -668,7 +668,7 @@ async function panopticaVisionPage() {
         delegate: 'CPU'
       },
       runningMode: 'VIDEO',
-      scoreThreshold: .35,
+      scoreThreshold: .15,
       maxResults: 12
     })
     statusEl.textContent = 'SEARCHING'

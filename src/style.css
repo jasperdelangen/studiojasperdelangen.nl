@@ -759,6 +759,7 @@ h1 {
   height: 100svh !important;
   object-fit: cover !important;
   transform: scaleX(-1);
+  -webkit-filter: grayscale(100%) contrast(1.35) brightness(.55) !important;
   filter: grayscale(1) contrast(1.35) brightness(.55) !important;
   z-index: 1;
 }
