@@ -599,13 +599,7 @@ async function panopticaVisionPage() {
       const offsetX = (width - drawWidth) / 2
       const offsetY = (height - drawHeight) / 2
 
-      ctx.save()
-      ctx.translate(width, 0)
-      ctx.scale(-1, 1)
-      ctx.filter = 'grayscale(1) contrast(1.35) brightness(.55)'
-      ctx.drawImage(video, offsetX, offsetY, drawWidth, drawHeight)
-      ctx.restore()
-      ctx.filter = 'none'
+      ctx.clearRect(0, 0, width, height)
 
       result.detections.forEach(detection => {
         if (!detection.boundingBox || !detection.categories[0]) return
@@ -671,7 +665,7 @@ async function panopticaVisionPage() {
     detector = await ObjectDetector.createFromOptions(vision, {
       baseOptions: {
         modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite0/int8/1/efficientdet_lite0.tflite',
-        delegate: 'GPU'
+        delegate: 'CPU'
       },
       runningMode: 'VIDEO',
       scoreThreshold: .35,
