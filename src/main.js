@@ -50,6 +50,9 @@ const routes = {
     body:
       'Open een proefopstelling. Sommige experimenten gebruiken je camera of microfoon en vragen daarvoor eerst toestemming.',
     experiments: true
+  },
+  nieuws: {
+    label: 'Nieuws'
   }
 }
 
@@ -205,6 +208,150 @@ function activateMenu() {
   })
 }
 
+let newsPromise
+
+function loadNews() {
+  newsPromise ||= fetch('/news-data.json').then(response => {
+    if (!response.ok) throw new Error('Nieuwsarchief kon niet worden geladen.')
+    return response.json()
+  })
+  return newsPromise
+}
+
+function formatDate(date, options = { day: '2-digit', month: 'long', year: 'numeric' }) {
+  return new Intl.DateTimeFormat('nl-NL', options).format(new Date(date))
+}
+
+function richText(text) {
+  return text
+    .split(/\n{2,}/)
+    .filter(Boolean)
+    .map(paragraph => {
+      const content = escapeHtml(paragraph)
+        .replace(
+          /(https?:\/\/[^\s<]+)/g,
+          '<a href="$1" target="_blank" rel="noopener noreferrer">$1 ↗</a>'
+        )
+        .replaceAll('\n', '<br>')
+      return `<p>${content}</p>`
+    })
+    .join('')
+}
+
+function newsMedia(item, detail = false) {
+  if (item.type === 'video') {
+    return `
+      <figure class="news-media ${detail ? 'detail-media' : ''}">
+        <video ${detail ? 'controls preload="metadata"' : 'muted playsinline preload="metadata"'} aria-label="${escapeHtml(item.alt)}">
+          <source src="${item.src}" type="video/mp4">
+        </video>
+        ${detail ? '' : '<span class="media-type">VIDEO / PLAY</span>'}
+      </figure>`
+  }
+
+  return `
+    <figure class="news-media ${detail ? 'detail-media' : ''}">
+      <img src="${item.src}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">
+    </figure>`
+}
+
+function newsCard(article, number) {
+  const preview = article.text.replace(/https?:\/\/\S+/g, '').trim()
+  return `
+    <article class="news-card">
+      <a href="/nieuws/?bericht=${encodeURIComponent(article.slug)}" aria-label="Lees ${escapeHtml(article.title)}">
+        ${article.media[0] ? newsMedia(article.media[0]) : '<div class="news-media text-only"><span>TEXT / SIGNAL</span></div>'}
+        <div class="news-card-copy">
+          <div class="news-meta"><span>${String(number).padStart(3, '0')}</span><time datetime="${article.date}">${formatDate(article.date)}</time></div>
+          <h2>${escapeHtml(article.title)}</h2>
+          ${preview ? `<p>${escapeHtml(preview.slice(0, 210))}${preview.length > 210 ? '…' : ''}</p>` : ''}
+          <span class="read-link">OPEN BERICHT <b>→</b></span>
+        </div>
+      </a>
+    </article>`
+}
+
+function newsArchive(articles) {
+  const grouped = new Map()
+  articles.forEach(article => {
+    const key = formatDate(article.date, { month: 'long', year: 'numeric' })
+    if (!grouped.has(key)) grouped.set(key, [])
+    grouped.get(key).push(article)
+  })
+
+  let number = articles.length
+  return [...grouped.entries()]
+    .map(([month, items]) => `
+      <section class="news-month" aria-labelledby="month-${items[0].timestamp}">
+        <div class="month-heading">
+          <h2 id="month-${items[0].timestamp}">${escapeHtml(month)}</h2>
+          <span>${items.length} BERICHTEN</span>
+        </div>
+        <div class="news-grid">
+          ${items.map(item => newsCard(item, number--)).join('')}
+        </div>
+      </section>`)
+    .join('')
+}
+
+function newsArticle(article) {
+  document.title = `${article.title} — Studio Jasper de Langen`
+  return `
+    <article class="news-detail">
+      <a class="back-link" href="/nieuws/">← TERUG NAAR ALLE BERICHTEN</a>
+      <header>
+        <p class="eyebrow">NIEUWS / ${formatDate(article.date).toUpperCase()}</p>
+        <h1>${escapeHtml(article.title)}</h1>
+      </header>
+      ${article.media.length ? `<div class="news-gallery">${article.media.map(item => newsMedia(item, true)).join('')}</div>` : ''}
+      <div class="article-copy">${richText(article.text)}</div>
+      <a class="back-link bottom" href="/nieuws/">← TERUG NAAR HET ARCHIEF</a>
+    </article>`
+}
+
+async function newsPage() {
+  app.innerHTML = `
+    <div class="site-shell news-shell">
+      ${navigation('nieuws')}
+      <main class="news-page"><p class="news-loading">SIGNAL LOADING…</p></main>
+    </div>`
+  activateMenu()
+
+  try {
+    const { articles } = await loadNews()
+    const requestedSlug = new URLSearchParams(window.location.search).get('bericht')
+    const article = requestedSlug ? articles.find(item => item.slug === requestedSlug) : null
+    const main = document.querySelector('.news-page')
+
+    if (requestedSlug && !article) {
+      main.innerHTML = `<section class="news-intro"><p class="eyebrow">NIEUWS / 404</p><h1>Bericht niet gevonden.</h1><a class="primary-link" href="/nieuws/"><span>Terug naar nieuws</span><span>←</span></a></section>`
+      return
+    }
+
+    if (article) {
+      main.innerHTML = newsArticle(article)
+      return
+    }
+
+    document.title = 'Nieuws — Studio Jasper de Langen'
+    main.innerHTML = `
+      <section class="news-intro">
+        <p class="eyebrow">PANOPTICA / NIEUWSARCHIEF</p>
+        <div>
+          <h1>Nieuws.</h1>
+          <p class="intro"><strong>Dagelijks onder observatie.</strong><br>Nieuws, onderzoek en signalen rond beeld, technologie, surveillance en menselijk gedrag.</p>
+        </div>
+        <p class="archive-count">${articles.length}<span>BERICHTEN<br>VANUIT DE STUDIO</span></p>
+      </section>
+      <div class="archive-rule"><span>NIEUW → OUD</span><span>ARCHIEF ACTIEF</span></div>
+      ${newsArchive(articles)}
+      <footer class="page-footer"><span>© STUDIO JASPER DE LANGEN</span><span class="live-indicator"><i></i>SIGNAL ACTIVE</span></footer>`
+  } catch (error) {
+    console.error(error)
+    document.querySelector('.news-page').innerHTML = `<section class="news-intro"><h1>Signal lost.</h1><p class="intro">Het nieuwsarchief kon niet worden geladen.</p></section>`
+  }
+}
+
 async function faceTrackingPage() {
   app.innerHTML = `
     <main class="tracker">
@@ -348,6 +495,10 @@ function render() {
   const route = currentRoute()
   window.scrollTo(0, 0)
 
+  if (route === 'nieuws') {
+    newsPage()
+    return
+  }
   if (routes[route]) {
     standardPage(route)
     return
