@@ -1,5 +1,5 @@
 import './style.css'
-import { FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision'
+import { FaceLandmarker, FilesetResolver, ObjectDetector } from '@mediapipe/tasks-vision'
 
 const app = document.querySelector('#app')
 let stopCurrentPage = () => {}
@@ -41,7 +41,8 @@ const routes = {
     body:
       'In de Panoptica Proeftuin worden technieken, beelden en interacties getest voordat ze onderdeel worden van de installatie.',
     next: 'experimenten',
-    nextLabel: 'Bekijk experimenten'
+    nextLabel: 'Bekijk experimenten',
+    vision: true
   },
   experimenten: {
     label: 'Experimenten',
@@ -139,6 +140,19 @@ function studioRoutes() {
     </div>`
 }
 
+function visionRoute() {
+  return `
+    <div class="vision-route">
+      <div>
+        <span>01 / LIVE EXPERIMENT</span>
+        <strong>Panoptica Vision</strong>
+        <p>Live objectherkenning maakt van je camera een observatiesysteem. Beeld blijft op je apparaat.</p>
+      </div>
+      <a href="#/panoptica-vision">OPEN CAMERA <b aria-hidden="true">→</b></a>
+    </div>
+    <a class="secondary-link" href="/experimenten/">BEKIJK ALLE EXPERIMENTEN →</a>`
+}
+
 function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
@@ -158,6 +172,8 @@ function standardPage(key) {
               ? experimentGrid()
               : route.landing
                 ? studioRoutes()
+                : route.vision
+                  ? visionRoute()
                 : `<a class="primary-link" href="${routeHref(route.next)}">
                   <span>${escapeHtml(route.nextLabel)}</span><span aria-hidden="true">→</span>
                 </a>`
@@ -489,6 +505,186 @@ async function faceTrackingPage() {
   }
 }
 
+async function panopticaVisionPage() {
+  app.innerHTML = `
+    <main class="tracker vision-tracker">
+      <video id="vision-video" autoplay muted playsinline></video>
+      <canvas id="vision-canvas"></canvas>
+      <a class="tracker-back" href="/proeftuin/">← PROEFTUIN</a>
+      <div id="status">INITIALIZING</div>
+      <div id="bottom">PANOPTICA VISION / KUNST&gt;KIJKT&lt;TERUG</div>
+    </main>`
+
+  const video = document.getElementById('vision-video')
+  const canvas = document.getElementById('vision-canvas')
+  const ctx = canvas.getContext('2d')
+  const statusEl = document.getElementById('status')
+  let detector = null
+  let stream = null
+  let frameId = 0
+  let width = 0
+  let height = 0
+  let lastVideoTime = -1
+  let lastFrame = performance.now()
+  let smoothFps = 0
+
+  function resize() {
+    width = window.innerWidth
+    height = window.innerHeight
+    canvas.width = width
+    canvas.height = height
+  }
+
+  function drawCornerBox(box, label, confidence) {
+    const length = Math.max(18, Math.min(45, box.w / 5))
+    ctx.strokeStyle = '#00ffe6'
+    ctx.lineWidth = 3
+    ctx.beginPath()
+    ;[
+      [box.x, box.y, 1, 1],
+      [box.x + box.w, box.y, -1, 1],
+      [box.x, box.y + box.h, 1, -1],
+      [box.x + box.w, box.y + box.h, -1, -1]
+    ].forEach(([x, y, sx, sy]) => {
+      ctx.moveTo(x + sx * length, y)
+      ctx.lineTo(x, y)
+      ctx.lineTo(x, y + sy * length)
+    })
+    ctx.stroke()
+
+    const text = `${label.toUpperCase()}  ${(confidence * 100).toFixed(1)}%`
+    ctx.font = '14px "Courier New", monospace'
+    const textWidth = ctx.measureText(text).width
+    const top = Math.max(58, box.y - 27)
+    ctx.fillStyle = '#00ffe6'
+    ctx.fillRect(box.x, top, textWidth + 16, 27)
+    ctx.fillStyle = '#080808'
+    ctx.fillText(text, box.x + 8, top + 18)
+  }
+
+  function drawInterface(count, fps) {
+    const stamp = new Date().toLocaleString('nl-NL', {
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    })
+    ctx.fillStyle = '#080808'
+    ctx.fillRect(0, 0, width, 56)
+    ctx.fillRect(0, height - 68, width, 68)
+    ctx.font = '18px "Courier New", monospace'
+    ctx.fillStyle = '#e1e1e1'
+    ctx.fillText('PANOPTICA / LIVE OBSERVATION', 22, 35)
+    ctx.fillStyle = '#ff2323'
+    ctx.beginPath()
+    ctx.arc(width - 110, 27, 6, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.font = '13px "Courier New", monospace'
+    ctx.fillText('REC', width - 94, 32)
+    ctx.fillStyle = '#00ffe6'
+    ctx.fillText(stamp, 20, height - 40)
+    ctx.fillStyle = '#e1e1e1'
+    ctx.fillText(`SUBJECTS ${String(count).padStart(2, '0')}   FPS ${fps.toFixed(1)}`, 20, height - 17)
+    ctx.fillStyle = '#929292'
+    const motto = 'OBSERVATIE ZONDER CONTEXT. GEGEVENS ZONDER GEWETEN.'
+    const mottoWidth = ctx.measureText(motto).width
+    if (width > mottoWidth + 360) ctx.fillText(motto, width - mottoWidth - 20, height - 17)
+  }
+
+  function loop(now) {
+    if (video.readyState >= 2 && detector && video.currentTime !== lastVideoTime) {
+      lastVideoTime = video.currentTime
+      const result = detector.detectForVideo(video, now)
+      const scale = Math.max(width / video.videoWidth, height / video.videoHeight)
+      const drawWidth = video.videoWidth * scale
+      const drawHeight = video.videoHeight * scale
+      const offsetX = (width - drawWidth) / 2
+      const offsetY = (height - drawHeight) / 2
+
+      ctx.save()
+      ctx.translate(width, 0)
+      ctx.scale(-1, 1)
+      ctx.filter = 'grayscale(1) contrast(1.35) brightness(.55)'
+      ctx.drawImage(video, offsetX, offsetY, drawWidth, drawHeight)
+      ctx.restore()
+      ctx.filter = 'none'
+
+      result.detections.forEach(detection => {
+        if (!detection.boundingBox || !detection.categories[0]) return
+        const source = detection.boundingBox
+        const box = {
+          x: width - (offsetX + (source.originX + source.width) * scale),
+          y: offsetY + source.originY * scale,
+          w: source.width * scale,
+          h: source.height * scale
+        }
+        const category = detection.categories[0]
+        drawCornerBox(box, category.displayName || category.categoryName || 'object', category.score)
+      })
+
+      const frameFps = 1000 / Math.max(now - lastFrame, 1)
+      lastFrame = now
+      smoothFps = smoothFps ? smoothFps * .9 + frameFps * .1 : frameFps
+      drawInterface(result.detections.length, smoothFps)
+      statusEl.textContent = result.detections.length ? 'TRACKING' : 'SEARCHING'
+    }
+    frameId = requestAnimationFrame(loop)
+  }
+
+  function handleKey(event) {
+    if (event.key.toLowerCase() === 'q') window.location.href = '/proeftuin/'
+    if (event.key.toLowerCase() === 'f') {
+      if (document.fullscreenElement) document.exitFullscreen()
+      else document.querySelector('.vision-tracker').requestFullscreen()
+    }
+    if (event.key.toLowerCase() === 's') {
+      canvas.toBlob(blob => {
+        if (!blob) return
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = `panoptica_${new Date().toISOString().replaceAll(':', '-').slice(0, 19)}.jpg`
+        link.click()
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000)
+      }, 'image/jpeg', .92)
+    }
+  }
+
+  window.addEventListener('resize', resize)
+  window.addEventListener('keydown', handleKey)
+  resize()
+
+  stopCurrentPage = () => {
+    cancelAnimationFrame(frameId)
+    window.removeEventListener('resize', resize)
+    window.removeEventListener('keydown', handleKey)
+    stream?.getTracks().forEach(track => track.stop())
+    detector?.close()
+  }
+
+  try {
+    statusEl.textContent = 'REQUESTING INPUT'
+    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false })
+    video.srcObject = stream
+    await video.play()
+    statusEl.textContent = 'LOADING MODEL'
+    const vision = await FilesetResolver.forVisionTasks(
+      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.35/wasm'
+    )
+    detector = await ObjectDetector.createFromOptions(vision, {
+      baseOptions: {
+        modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite0/int8/1/efficientdet_lite0.tflite',
+        delegate: 'GPU'
+      },
+      runningMode: 'VIDEO',
+      scoreThreshold: .35,
+      maxResults: 12
+    })
+    statusEl.textContent = 'SEARCHING'
+    frameId = requestAnimationFrame(loop)
+  } catch (error) {
+    console.error(error)
+    statusEl.textContent = 'NO VISUAL INPUT'
+  }
+}
+
 function render() {
   stopCurrentPage()
   stopCurrentPage = () => {}
@@ -505,6 +701,10 @@ function render() {
   }
   if (route === 'face-tracking') {
     faceTrackingPage()
+    return
+  }
+  if (route === 'panoptica-vision') {
+    panopticaVisionPage()
     return
   }
 
