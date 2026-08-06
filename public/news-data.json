@@ -1,6 +1,20 @@
 {
-  "generatedAt": "2026-08-03T21:47:30.631Z",
+  "generatedAt": "2026-08-06T06:24:25.198525.000Z",
   "articles": [
+    {
+      "slug": "2026-08-06-kunst-kijkt-terug-ghostcommit",
+      "timestamp": 1785997440,
+      "date": "2026-08-06T06:24:00.000Z",
+      "title": "Kunst>Kijkt<Terug",
+      "text": "Kunst>Kijkt<Terug\n\nWe zijn gewend te denken dat beelden passief zijn.\nEen camera registreert.\nEen foto toont.\nEen afbeelding wordt bekeken.\nMaar wat gebeurt er wanneer een afbeelding niet alleen informatie bevat voor mensen, maar ook verborgen instructies voor kunstmatige intelligentie?\n\nRecent onderzoek naar de zogenoemde Ghostcommit-aanval laat zien dat een ogenschijnlijk onschuldige afbeelding verborgen opdrachten kan bevatten die door AI-systemen worden gelezen en uitgevoerd. Voor een mens blijft het gewoon een plaatje. Voor een AI kan hetzelfde beeld een opdracht zijn.\n\nIneens verandert alles.\nHet beeld wordt niet alleen bekeken.\nHet beïnvloedt degene die kijkt.\nDat raakt precies aan de vraag die Panoptica stelt.\n\nWe denken vaak dat wij naar technologie kijken. Maar technologie kijkt ook naar ons. Ze analyseert, herkent, interpreteert en neemt steeds vaker beslissingen op basis van wat zij ziet.\n\nEn nu blijkt dat zelfs een afbeelding de waarneming van AI kan sturen.\n\nMisschien is de belangrijkste vraag daarom niet hoe goed AI leert kijken.\nMaar wanneer wij niet meer zeker weten wie of wat de blik bepaalt.\nKunst>Kijkt<Terug",
+      "media": [
+        {
+          "type": "image",
+          "src": "/news-media/0195-747007F3-D7A6-4870-813E-CD84D62ED9D3.jpg",
+          "alt": "Kunst>Kijkt<Terug"
+        }
+      ]
+    },
     {
       "slug": "2026-08-03-kabinet-versoepelt-regels-voor-politiehacksoftware-controle-aangepas",
       "timestamp": 1785756614,
