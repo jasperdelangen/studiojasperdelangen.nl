@@ -245,6 +245,84 @@ function panopticaPage() {
   activateMenu()
 }
 
+function overPage() {
+  app.innerHTML = `
+    <div class="site-shell story-shell">
+      <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="/noise-background.mp4" type="video/mp4">
+      </video>
+      ${navigation('over')}
+      <main class="page story-page">
+        <div class="signal" aria-hidden="true"><span></span><span></span><span></span></div>
+        <article class="panoptica-story" aria-labelledby="page-title">
+          <header class="story-hero">
+            <p class="eyebrow">OVER / STUDIO JASPER DE LANGEN / AMERSFOORT</p>
+            <h1 id="page-title">Jasper de Langen.</h1>
+            <p class="intro">Multidisciplinair kunstenaar en componist, werkend op het snijvlak van glas, geluid, licht en technologie.</p>
+          </header>
+
+          <div class="story-content">
+            <section aria-labelledby="artistieke-praktijk">
+              <p class="section-index">01 / ARTISTIEKE PRAKTIJK</p>
+              <h2 id="artistieke-praktijk">Kijken en gezien worden</h2>
+              <div class="story-copy">
+                <p>Jasper de Langen maakt installaties, fotografisch en videowerk, sonische omgevingen en objecten. Zijn praktijk is een voortdurend onderzoek naar kijken en de onvermijdelijkheid van gezien worden.</p>
+                <p>In het werk worden de vertrouwde rollen van waarnemer en geobserveerde verstoord. Kunst, technologie en publiek ontmoeten elkaar in ruimtes waarin controle niet vanzelfsprekend is en de positie van de bezoeker kan verschuiven.</p>
+                <p>Het doel is niet om sluitende antwoorden te geven, maar om ervaringen te maken die blijven hangen: momenten waarop de grens tussen kunst en dagelijks leven dun wordt.</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="materiaal-en-geluid">
+              <p class="section-index">02 / MATERIAAL &amp; GELUID</p>
+              <h2 id="materiaal-en-geluid">Glas, licht en compositie</h2>
+              <div class="story-copy">
+                <p>Glas werkt in Jaspers praktijk tegelijk als barrière en lens. Het breekt, vervormt en onthult. Licht en schaduw sturen de aandacht en bewegen tussen intimiteit en blootstelling.</p>
+                <p>Onder de naam <strong>Jazzpers</strong> maakt Jasper muziek en sonische omgevingen die geen achtergrond vormen, maar actief deelnemen aan het werk. Ritme, herhaling, spanning en imperfectie spiegelen de visuele installaties.</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="studio">
+              <p class="section-index">03 / DE STUDIO</p>
+              <h2 id="studio">Werkplaats in Amersfoort</h2>
+              <div class="story-copy">
+                <p>Studio Jasper de Langen is een werkplaats voor fotografie, video, installaties, interactieve werken, muziek en experiment. Ideeën worden er onderzocht door te bouwen, testen, observeren en opnieuw te beginnen.</p>
+                <p>De studio verbindt artistiek onderzoek met technische ontwikkeling. Camera’s, computers, projecties, sensoren en geluid zijn daarbij geen doel op zichzelf, maar materialen waarmee vragen voelbaar kunnen worden gemaakt.</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="huidig-project">
+              <p class="section-index">04 / HUIDIG PROJECT</p>
+              <h2 id="huidig-project">Panoptica</h2>
+              <div class="story-copy">
+                <p>Panoptica is de interactieve kunstinstallatie waarin Jaspers onderzoek naar waarneming, surveillance, beeldtechnologie en macht samenkomt. Het werk draait de verhouding tussen kunstwerk en bezoeker om: de kunst kijkt terug.</p>
+              </div>
+              <a class="primary-link" href="/panoptica/">
+                <span>Lees over Panoptica</span><span aria-hidden="true">→</span>
+              </a>
+            </section>
+
+            <aside class="practical-info" aria-labelledby="contact">
+              <p class="section-index">05 / CONTACT</p>
+              <h2 id="contact">Contact en samenwerking</h2>
+              <dl>
+                <div><dt>Locatie</dt><dd>Amersfoort, Nederland</dd></div>
+                <div><dt>Onderwerpen</dt><dd>Presentaties, samenwerkingen en pers</dd></div>
+                <div><dt>Contact</dt><dd><a href="https://www.instagram.com/panoptica_art/" target="_blank" rel="noopener noreferrer">Panoptica op Instagram →</a></dd></div>
+              </dl>
+            </aside>
+          </div>
+        </article>
+
+        <footer class="page-footer">
+          <span>© STUDIO JASPER DE LANGEN</span>
+          <span class="live-indicator"><i></i>AMERSFOORT</span>
+        </footer>
+      </main>
+    </div>`
+
+  activateMenu()
+}
+
 function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
@@ -796,6 +874,10 @@ function render() {
   }
   if (route === 'panoptica') {
     panopticaPage()
+    return
+  }
+  if (route === 'over') {
+    overPage()
     return
   }
   if (routes[route]) {
