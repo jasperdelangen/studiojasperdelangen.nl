@@ -153,6 +153,98 @@ function visionRoute() {
     <a class="secondary-link" href="/experimenten/">BEKIJK ALLE EXPERIMENTEN →</a>`
 }
 
+function panopticaPage() {
+  app.innerHTML = `
+    <div class="site-shell story-shell">
+      <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="/noise-background.mp4" type="video/mp4">
+      </video>
+      ${navigation('panoptica')}
+      <main class="page story-page">
+        <div class="signal" aria-hidden="true"><span></span><span></span><span></span></div>
+        <article class="panoptica-story" aria-labelledby="page-title">
+          <header class="story-hero">
+            <p class="eyebrow">PANOPTICA / INTERACTIEVE KUNSTINSTALLATIE</p>
+            <h1 id="page-title">Kunst&gt;Kijkt&lt;Terug</h1>
+            <p class="intro">We zijn eraan gewend geraakt bekeken te worden. Panoptica maakt die vaak onzichtbare blik opnieuw voelbaar.</p>
+          </header>
+
+          <div class="story-content">
+            <section aria-labelledby="wat-is-panoptica">
+              <p class="section-index">01 / HET WERK</p>
+              <h2 id="wat-is-panoptica">Wat is Panoptica?</h2>
+              <div class="story-copy">
+                <p>Camera’s hangen in winkels, stations, straten en woningen. Telefoons herkennen gezichten, systemen analyseren gedrag en algoritmen proberen uit beelden af te leiden wie of wat ze voor zich hebben. Veel daarvan gebeurt zo geruisloos dat we het nauwelijks nog als observatie ervaren.</p>
+                <p>Panoptica is een interactieve kunstinstallatie van Jasper de Langen en Studio Jasper de Langen waarin de gebruikelijke verhouding tussen kunstwerk en bezoeker wordt omgedraaid. Je staat niet alleen voor een werk om het te bekijken. Het werk neemt ook jou waar.</p>
+                <p>Camera’s, beeldschermen, software, geluid en andere elementen vormen samen een omgeving die reageert op aanwezigheid en beweging. Wat er precies gebeurt, wordt bewust niet vooraf uitgelegd. De ervaring begint bij de onzekerheid over wat het systeem ziet, begrijpt, verkeerd begrijpt of met rust laat.</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="wie-kijkt">
+              <p class="section-index">02 / DE VRAAG</p>
+              <h2 id="wie-kijkt">Wie kijkt naar wie?</h2>
+              <div class="story-copy">
+                <p>Panoptica gaat niet alleen over surveillancecamera’s of privacy. Het werk onderzoekt een bredere verandering in onze verhouding tot beelden en technologie.</p>
+                <p>Een camera registreert niet langer noodzakelijk alleen een beeld. Computers kunnen beelden classificeren, gezichten en objecten herkennen, patronen zoeken en daar conclusies aan verbinden. Daarmee verandert ook de betekenis van kijken.</p>
+                <blockquote>
+                  <p>Waarnemen wordt verwerken.<br>Herkennen wordt interpreteren.<br>Kijken kan een vorm van macht worden.</p>
+                </blockquote>
+                <p>Panoptica brengt die ontwikkeling terug naar een fysieke ruimte waarin de bezoeker er niet alleen over leest, maar er onderdeel van wordt.</p>
+              </div>
+            </section>
+
+            <section aria-labelledby="geen-demo">
+              <p class="section-index">03 / MATERIAAL</p>
+              <h2 id="geen-demo">Geen technologiedemonstratie</h2>
+              <div class="story-copy">
+                <p>De techniek is nadrukkelijk niet het onderwerp op zichzelf. Camera’s, computers en algoritmen zijn het materiaal waarmee Panoptica wordt gebouwd, zoals een schilder verf gebruikt of een fotograaf licht.</p>
+                <p>Soms werkt een systeem nauwkeurig. Soms twijfelt het. Soms ziet het iets wat er niet is of verliest het juist iets wat recht voor de camera staat. Ook die fouten zijn interessant.</p>
+                <p>Want als machines steeds vaker worden ingezet om mensen en hun gedrag te interpreteren, wordt de vraag niet alleen wat een systeem kan zien, maar ook: <strong>wat denkt het dat het ziet?</strong></p>
+              </div>
+            </section>
+
+            <section aria-labelledby="ontwikkeling">
+              <p class="section-index">04 / PROCES</p>
+              <h2 id="ontwikkeling">Een installatie in ontwikkeling</h2>
+              <div class="story-copy">
+                <p>Panoptica wordt ontwikkeld als een modulair werk. Experimenten met beeld, geluid, camera’s, objectdetectie en interactieve systemen worden samengebracht tot één omgeving.</p>
+                <p>Een deel van dat ontwikkelproces is zichtbaar in de <a href="/proeftuin/">Panoptica Proeftuin</a>. Daar worden experimenten en technische onderzoeken getoond zonder de uiteindelijke ervaring van de installatie prijs te geven.</p>
+              </div>
+              <a class="primary-link" href="/proeftuin/">
+                <span>Open de Proeftuin</span><span aria-hidden="true">→</span>
+              </a>
+            </section>
+
+            <section class="project-summary" aria-labelledby="projectsamenvatting">
+              <p class="section-index">05 / VOOR PROGRAMMEURS, CURATOREN, ORGANISATOREN &amp; PERS</p>
+              <h2 id="projectsamenvatting">Projectsamenvatting</h2>
+              <div class="story-copy">
+                <p>Panoptica is een interactieve kunstinstallatie van multidisciplinair kunstenaar Jasper de Langen, ontwikkeld binnen Studio Jasper de Langen. Het werk onderzoekt hoe onze verhouding tot beelden verandert nu camera’s niet alleen registreren, maar computers beelden ook classificeren, interpreteren en er conclusies aan verbinden. In een fysieke omgeving van camera’s, beeldschermen, software, geluid en andere elementen verschuift de bezoeker van toeschouwer naar waargenomen deelnemer. Panoptica benadert surveillance niet als een uitsluitend technisch of privacygericht onderwerp, maar als een culturele en lichamelijke ervaring rond waarneming, interpretatie en macht. De technologie fungeert daarbij als artistiek materiaal, inclusief twijfel, misinterpretatie en systeemfouten. Het modulaire werk is in ontwikkeling en wordt gevoed door experimenten met onder meer objectdetectie, interactie, beeld en geluid. Een selectie van het onderzoeksproces is zichtbaar in de Panoptica Proeftuin, zonder de uiteindelijke installatie-ervaring of haar verrassingen vooraf prijs te geven.</p>
+              </div>
+            </section>
+
+            <aside class="practical-info" aria-labelledby="praktische-informatie">
+              <p class="section-index">06 / PRAKTISCH</p>
+              <h2 id="praktische-informatie">Praktische informatie</h2>
+              <dl>
+                <div><dt>Status</dt><dd>In ontwikkeling</dd></div>
+                <div><dt>Maker</dt><dd>Jasper de Langen / Studio Jasper de Langen</dd></div>
+                <div><dt>Contact</dt><dd><a href="/over/">Neem contact op met de studio →</a></dd></div>
+              </dl>
+            </aside>
+          </div>
+        </article>
+
+        <footer class="page-footer">
+          <span>© STUDIO JASPER DE LANGEN</span>
+          <span class="live-indicator"><i></i>IN ONTWIKKELING</span>
+        </footer>
+      </main>
+    </div>`
+
+  activateMenu()
+}
+
 function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
@@ -700,6 +792,10 @@ function render() {
 
   if (route === 'nieuws') {
     newsPage()
+    return
+  }
+  if (route === 'panoptica') {
+    panopticaPage()
     return
   }
   if (routes[route]) {
