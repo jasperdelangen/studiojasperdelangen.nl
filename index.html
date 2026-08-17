@@ -18,7 +18,12 @@
     <meta property="og:title" content="Studio Jasper de Langen — beeld, technologie en menselijk gedrag" />
     <meta property="og:description" content="Fotografie, video, installaties, interactieve werken en experimenten vanuit Amersfoort." />
     <meta property="og:url" content="https://studiojasperdelangen.nl/" />
+    <meta property="og:image" content="https://studiojasperdelangen.nl/og-image.png" />
+    <meta property="og:image:alt" content="Beeldmerk van Studio Jasper de Langen" />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Studio Jasper de Langen — beeld, technologie en menselijk gedrag" />
+    <meta name="twitter:description" content="Fotografie, video, installaties, interactieve werken en experimenten vanuit Amersfoort." />
+    <meta name="twitter:image" content="https://studiojasperdelangen.nl/og-image.png" />
     <title>Studio Jasper de Langen — kunstenaar in Amersfoort</title>
     <script type="application/ld+json">
       {
@@ -33,12 +38,33 @@
             "knowsAbout": ["fotografie", "video", "installatiekunst", "interactieve kunst", "surveillance", "AI"]
           },
           {
+            "@type": "Organization",
+            "@id": "https://studiojasperdelangen.nl/#studio",
+            "name": "Studio Jasper de Langen",
+            "url": "https://studiojasperdelangen.nl/",
+            "logo": "https://studiojasperdelangen.nl/favicon.svg",
+            "founder": { "@id": "https://studiojasperdelangen.nl/#jasper-de-langen" }
+          },
+          {
             "@type": "WebSite",
             "@id": "https://studiojasperdelangen.nl/#website",
             "url": "https://studiojasperdelangen.nl/",
             "name": "Studio Jasper de Langen",
             "inLanguage": "nl-NL",
-            "about": { "@id": "https://studiojasperdelangen.nl/#jasper-de-langen" }
+            "publisher": { "@id": "https://studiojasperdelangen.nl/#studio" },
+            "about": [
+              { "@id": "https://studiojasperdelangen.nl/#jasper-de-langen" },
+              { "@id": "https://studiojasperdelangen.nl/panoptica/#project" }
+            ]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://studiojasperdelangen.nl/#webpage",
+            "url": "https://studiojasperdelangen.nl/",
+            "name": "Studio Jasper de Langen — kunstenaar in Amersfoort",
+            "isPartOf": { "@id": "https://studiojasperdelangen.nl/#website" },
+            "about": { "@id": "https://studiojasperdelangen.nl/#studio" },
+            "inLanguage": "nl-NL"
           }
         ]
       }
