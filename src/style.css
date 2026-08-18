@@ -89,6 +89,42 @@ button {
   pointer-events: none;
 }
 
+.bracket-rain {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+}
+
+.bracket-rain span {
+  position: absolute;
+  top: -12vh;
+  left: var(--left);
+  color: var(--ice);
+  font-size: var(--size);
+  line-height: 1;
+  opacity: 0;
+  text-shadow: 0 0 12px rgba(191, 233, 255, .32);
+  animation: bracket-fall var(--duration) linear var(--delay) infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes bracket-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -12vh, 0) rotate(0deg);
+  }
+  8%, 82% {
+    opacity: var(--opacity);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), 124vh, 0) rotate(24deg);
+  }
+}
+
 .site-header {
   position: fixed;
   inset: 0 0 auto;
@@ -160,6 +196,8 @@ button {
 }
 
 .page {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   min-height: 100svh;
@@ -1130,5 +1168,9 @@ h1 {
 
   * {
     transition: none !important;
+  }
+
+  .bracket-rain {
+    display: none;
   }
 }

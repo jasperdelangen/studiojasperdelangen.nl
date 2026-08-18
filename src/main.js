@@ -153,6 +153,23 @@ function visionRoute() {
     <a class="secondary-link" href="/experimenten/">BEKIJK ALLE EXPERIMENTEN →</a>`
 }
 
+function bracketRain() {
+  const glyphs = ['[', ']', '[', ']', '⌜', '⌝', '⌞', '⌟', '<', '>']
+
+  return `
+    <div class="bracket-rain" aria-hidden="true">
+      ${Array.from({ length: 38 }, (_, index) => {
+        const left = (index * 37) % 101
+        const duration = 6 + (index * 11) % 9
+        const delay = -((index * 17) % 15)
+        const size = 14 + (index * 7) % 27
+        const drift = ((index * 13) % 90) - 45
+        const opacity = (18 + (index * 9) % 46) / 100
+        return `<span style="--left:${left}%;--duration:${duration}s;--delay:${delay}s;--size:${size}px;--drift:${drift}px;--opacity:${opacity}">${glyphs[index % glyphs.length]}</span>`
+      }).join('')}
+    </div>`
+}
+
 function panopticaPage() {
   app.innerHTML = `
     <div class="site-shell story-shell">
@@ -330,6 +347,7 @@ function standardPage(key) {
       <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
         <source src="/noise-background.mp4" type="video/mp4">
       </video>
+      ${key === 'proeftuin' ? bracketRain() : ''}
       ${navigation(key)}
       <main class="page">
         <div class="signal" aria-hidden="true"><span></span><span></span><span></span></div>
