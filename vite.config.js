@@ -12,6 +12,7 @@ export default defineConfig({
         panoptica: resolve(__dirname, 'panoptica/index.html'),
         proeftuin: resolve(__dirname, 'proeftuin/index.html'),
         experimenten: resolve(__dirname, 'experimenten/index.html'),
+        schilderkunst: resolve(__dirname, 'schilderkunst/index.html'),
         nieuws: resolve(__dirname, 'nieuws/index.html')
       }
     }

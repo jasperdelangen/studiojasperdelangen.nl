@@ -52,6 +52,9 @@ const routes = {
       'Open een proefopstelling. Sommige experimenten gebruiken je camera of microfoon en vragen daarvoor eerst toestemming.',
     experiments: true
   },
+  schilderkunst: {
+    label: 'Schilderkunst'
+  },
   nieuws: {
     label: 'Nieuws'
   }
@@ -151,6 +154,23 @@ function visionRoute() {
       <a href="#/panoptica-vision">OPEN CAMERA <b aria-hidden="true">→</b></a>
     </div>
     <a class="secondary-link" href="/experimenten/">BEKIJK ALLE EXPERIMENTEN →</a>`
+}
+
+function bracketRain() {
+  const glyphs = ['[', ']', '[', ']', '⌜', '⌝', '⌞', '⌟', '<', '>']
+
+  return `
+    <div class="bracket-rain" aria-hidden="true">
+      ${Array.from({ length: 38 }, (_, index) => {
+        const left = (index * 37) % 101
+        const duration = 6 + (index * 11) % 9
+        const delay = -((index * 17) % 15)
+        const size = 14 + (index * 7) % 27
+        const drift = ((index * 13) % 90) - 45
+        const opacity = (18 + (index * 9) % 46) / 100
+        return `<span style="--left:${left}%;--duration:${duration}s;--delay:${delay}s;--size:${size}px;--drift:${drift}px;--opacity:${opacity}">${glyphs[index % glyphs.length]}</span>`
+      }).join('')}
+    </div>`
 }
 
 function panopticaPage() {
@@ -323,6 +343,38 @@ function overPage() {
   activateMenu()
 }
 
+function paintingChapterPage() {
+  app.innerHTML = `
+    <div class="site-shell paintings-shell">
+      ${navigation('schilderkunst')}
+      <main class="paintings-page">
+        <header class="paintings-intro">
+          <p class="eyebrow">STUDIO JASPER DE LANGEN / HOOFDSTUK</p>
+          <h1>Schilderkunst.</h1>
+          <p class="intro">Een groeiend hoofdstuk met schilderijen uit de studio. Meer werk volgt.</p>
+        </header>
+
+        <section class="paintings-grid" aria-label="Schilderkunst van Jasper de Langen">
+          <figure class="painting painting-portrait">
+            <img src="/schilderkunst/schilderij-01.webp" alt="Expressief schilderij met het woord Love, figuren, een rood hart en een personage met hoge hoed" width="920" height="1800">
+            <figcaption><span>WERK 01</span><span>SCHILDERKUNST</span></figcaption>
+          </figure>
+          <figure class="painting painting-square">
+            <img src="/schilderkunst/schilderij-02.webp" alt="Expressief schilderij in groen, blauw, geel en wit met een centrale figuur onder een boog" width="1800" height="1800" loading="lazy">
+            <figcaption><span>WERK 02</span><span>SCHILDERKUNST</span></figcaption>
+          </figure>
+        </section>
+
+        <footer class="page-footer">
+          <span>© STUDIO JASPER DE LANGEN</span>
+          <span class="live-indicator"><i></i>COLLECTIE IN ONTWIKKELING</span>
+        </footer>
+      </main>
+    </div>`
+
+  activateMenu()
+}
+
 function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
@@ -330,6 +382,7 @@ function standardPage(key) {
       <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
         <source src="/noise-background.mp4" type="video/mp4">
       </video>
+      ${key === 'proeftuin' ? bracketRain() : ''}
       ${navigation(key)}
       <main class="page">
         <div class="signal" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -878,6 +931,10 @@ function render() {
   }
   if (route === 'over') {
     overPage()
+    return
+  }
+  if (route === 'schilderkunst') {
+    paintingChapterPage()
     return
   }
   if (routes[route]) {
