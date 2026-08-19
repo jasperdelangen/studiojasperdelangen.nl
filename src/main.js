@@ -145,6 +145,19 @@ function studioRoutes() {
 
 function visionRoute() {
   return `
+    <aside class="camera-privacy" aria-labelledby="camera-privacy-title">
+      <span>PRIVACY / CAMERA</span>
+      <strong id="camera-privacy-title">Niemand kan je zien.</strong>
+      <p>Je camerabeeld wordt niet opgenomen, niet gestreamd en niet opgeslagen. De verwerking gebeurt alleen lokaal in je browser. Niemand kijkt mee — ook de maker niet. Alleen jij ziet jezelf op je eigen scherm.</p>
+    </aside>
+    <div class="proeftuin-route">
+      <div>
+        <span>02 / LIVE EXPERIMENT</span>
+        <strong>Proeftuin 2 — Vallende brackets</strong>
+        <p>Een interactief werk waarin herkenning losraakt, blijft hangen en uit beeld valt.</p>
+      </div>
+      <a href="https://studio-jasper-de-langen-portfolio.frf9yr92fq.chatgpt.site/proeftuin-2/">OPEN PROEFTUIN 2 <b aria-hidden="true">→</b></a>
+    </div>
     <div class="vision-route">
       <div>
         <span>01 / LIVE EXPERIMENT</span>
