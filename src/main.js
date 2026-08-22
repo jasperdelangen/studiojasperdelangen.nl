@@ -200,6 +200,11 @@ function panopticaPage() {
             <p class="eyebrow">PANOPTICA / INTERACTIEVE KUNSTINSTALLATIE</p>
             <h1 id="page-title">Kunst&gt;Kijkt&lt;Terug</h1>
             <p class="intro">We zijn eraan gewend geraakt bekeken te worden. Panoptica maakt die vaak onzichtbare blik opnieuw voelbaar.</p>
+            <div class="panoptica-logo-loop" aria-hidden="true">
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="/panoptica-logo-loop.mp4" type="video/mp4">
+              </video>
+            </div>
           </header>
 
           <div class="story-content">
