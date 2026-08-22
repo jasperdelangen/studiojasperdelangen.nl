@@ -1,6 +1,28 @@
 {
-  "generatedAt": "2026-08-06T06:24:25.198525.000Z",
+  "generatedAt": "2026-08-22T10:30:00.000Z",
   "articles": [
+    {
+      "slug": "2026-08-21-neem-even-de-tijd-om-dit-te-beluisteren",
+      "timestamp": 1787314500,
+      "date": "2026-08-21T13:35:00.000Z",
+      "title": "Neem alsjeblieft even de tijd om dit te beluisteren",
+      "text": "Neem alsjeblieft even de tijd om dit te beluisteren.\n\nIn deze video legt Jasper de Langen uit wat Panoptica is en welke vragen het project stelt over kijken, technologie en surveillance.",
+      "media": [
+        {
+          "type": "video",
+          "src": "/news-media/2026-08-21-panoptica-uitleg.mp4",
+          "alt": "Jasper de Langen legt met gesproken tekst uit wat Panoptica is"
+        }
+      ]
+    },
+    {
+      "slug": "2026-08-21-de-camera-verdwijnt-in-de-bril",
+      "timestamp": 1787313600,
+      "date": "2026-08-21T13:20:00.000Z",
+      "title": "De camera verdwijnt in de bril",
+      "text": "De camera verdwijnt in de bril\n\n21 augustus 2026\n\nDe camera aan de muur herkennen we. Een telefoon die op ons wordt gericht ook. Maar wat gebeurt er wanneer de camera eruitziet als een gewone bril?\n\nDie vraag wordt steeds minder theoretisch. Britse bioscopen nemen maatregelen tegen camera-brillen zoals de slimme brillen van Meta. De UK Cinema Association heeft nieuwe richtlijnen aangekondigd om het gebruik ervan te verbieden of sterk te beperken. Aanleiding is vooral de mogelijkheid om ongemerkt films op te nemen. Eerder deze maand werden Meta-brillen ook al verboden in rechtbanken in Engeland en Wales.\n\nTegelijk groeit een bredere discussie over privacy. Meta’s slimme brillen hebben een camera, microfoons en AI-functies aan boord. Een klein lampje moet omstanders duidelijk maken wanneer er wordt gefilmd, maar juist die zichtbaarheid blijkt kwetsbaar. Er zijn diensten ontstaan die het indicatielampje aanpassen of uitschakelen. Meta zegt inmiddels maatregelen te hebben genomen waardoor filmen niet meer mogelijk moet zijn wanneer met het lampje is geknoeid.\n\nHet probleem gaat verder dan stiekem filmen. De bril verandert het gebaar van observeren.\n\nBij een traditionele camera is meestal zichtbaar dat iemand een opname maakt. Een smartphone moet uit een zak worden gehaald en gericht. Bij een slimme bril kijkt de camera simpelweg mee met degene die hem draagt. Voor een omstander wordt het moeilijker om onderscheid te maken tussen aangekeken, gefilmd en mogelijk door software geanalyseerd worden.\n\nDaarmee verschuift surveillance van een herkenbaar apparaat naar iets dat we dragen.\n\nDe ontwikkeling roept bovendien vragen op over gezichtsherkenning. Privacyorganisaties waarschuwen al langer voor de combinatie van smartglasses en biometrische herkenning. Technisch is het mogelijk om een gezicht dat een brildrager ziet te koppelen aan informatie uit andere databronnen. Meta zegt dat zijn huidige AI-brillen geen gezichtsherkenning bevatten, maar intern onderzochte technologie en patenten laten zien hoe dichtbij die mogelijkheid inmiddels is.\n\nSmartglasses hebben tegelijkertijd legitieme en soms belangrijke toepassingen. Voor mensen met een visuele beperking kunnen functies als het beschrijven van de omgeving, voorlezen en handsfree assistentie veel zelfstandigheid opleveren. Juist daarom is de discussie ingewikkelder dan simpelweg vóór of tegen de technologie zijn.\n\nDe vraag wordt uiteindelijk niet alleen wat zo’n bril kan.\n\nDe vraag wordt of wij nog kunnen zien wanneer technologie naar ons kijkt.\n\nKunst>kijkt<terug\n\npanoptica.nl",
+      "media": []
+    },
     {
       "slug": "2026-08-06-kunst-kijkt-terug-ghostcommit",
       "timestamp": 1785997440,
