@@ -367,17 +367,6 @@ function paintingChapterPage() {
           <p class="intro">Een groeiend hoofdstuk met schilderijen uit de studio. Meer werk volgt.</p>
         </header>
 
-        <section class="paintings-grid" aria-label="Schilderkunst van Jasper de Langen">
-          <figure class="painting painting-portrait">
-            <img src="/schilderkunst/schilderij-01.webp" alt="Expressief schilderij met het woord Love, figuren, een rood hart en een personage met hoge hoed" width="920" height="1800">
-            <figcaption><span>WERK 01</span><span>SCHILDERKUNST</span></figcaption>
-          </figure>
-          <figure class="painting painting-square">
-            <img src="/schilderkunst/schilderij-02.webp" alt="Expressief schilderij in groen, blauw, geel en wit met een centrale figuur onder een boog" width="1800" height="1800" loading="lazy">
-            <figcaption><span>WERK 02</span><span>SCHILDERKUNST</span></figcaption>
-          </figure>
-        </section>
-
         <footer class="page-footer">
           <span>© STUDIO JASPER DE LANGEN</span>
           <span class="live-indicator"><i></i>COLLECTIE IN ONTWIKKELING</span>
