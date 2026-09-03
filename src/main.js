@@ -345,7 +345,7 @@ function overPage() {
               <dl>
                 <div><dt>Locatie</dt><dd>Amersfoort, Nederland</dd></div>
                 <div><dt>Onderwerpen</dt><dd>Presentaties, samenwerkingen en pers</dd></div>
-                <div><dt>Contact</dt><dd><a href="https://www.instagram.com/panoptica_art/" target="_blank" rel="noopener noreferrer">Panoptica op Instagram →</a></dd></div>
+                <div><dt>Contact</dt><dd><a href="https://www.instagram.com/panoptica_art/" target="_blank" rel="noopener noreferrer">Panoptica op Instagram →</a><br><a href="https://www.facebook.com/profile.php?id=61575758168371" target="_blank" rel="noopener noreferrer">Panoptica op Facebook →</a></dd></div>
               </dl>
             </aside>
           </div>
