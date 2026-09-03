@@ -14,6 +14,8 @@
 html {
   background: #050505;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
@@ -1153,7 +1155,18 @@ h1 {
   }
 
   .story-copy {
+    min-width: 0;
+    max-width: 100%;
     font-size: 14px;
+  }
+
+  .story-copy p,
+  .story-copy blockquote,
+  .practical-info dl,
+  .practical-info dd {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .practical-info dl div {
