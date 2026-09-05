@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#030507" />
+    <meta name="description" content="Panoptica Subject Analysis: een lokaal camera-experiment over de stap van kijken naar oordelen." />
+    <title>Panoptica — Subject Analysis</title>
+    <link rel="stylesheet" href="/proeftuin-3/style.css" />
+    <script type="module" src="/proeftuin-3/app.js"></script>
+  </head>
+  <body>
+    <main id="app">
+      <section id="consent" class="consent">
+        <div class="consent-copy">
+          <p class="eyebrow">PANOPTICA TEST SITE 03</p>
+          <h1>SUBJECT<br />ANALYSIS</h1>
+          <p class="intro">Dit experiment kijkt niet alleen. Het trekt conclusies.</p>
+          <div class="privacy" role="note">
+            <strong>ER WORDEN GEEN DATA, PERSOONSGEGEVENS OF CAMERABEELDEN VERZAMELD.</strong>
+            <p>Alles wordt tijdelijk en lokaal op dit apparaat verwerkt. De getoonde eigenschappen en scores zijn fictieve interpretaties: het systeem weet niet wie je bent of wat je voelt.</p>
+          </div>
+          <p class="fineprint">Door verder te gaan geef je alleen tijdelijk toegang tot de camera voor deze sessie.</p>
+          <div class="actions">
+            <button id="allow" class="primary">Camera toestaan en analyse starten</button>
+            <button id="decline" class="secondary">Doorgaan zonder camera</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="experience" aria-hidden="true">
+        <video id="camera" autoplay muted playsinline></video>
+        <canvas id="overlay"></canvas>
+        <div class="scanline"></div><div class="grain"></div>
+        <header class="top-hud"><span>PANOPTICA / SUBJECT ANALYSIS</span><button id="stop">STOP</button></header>
+        <aside class="readout" aria-live="polite">
+          <p class="subject"><i></i> SUBJECT DETECTED</p>
+          <dl>
+            <div><dt>ATTENTION</dt><dd id="attention">--%</dd></div>
+            <div><dt>STRESS</dt><dd id="stress">--%</dd></div>
+            <div><dt>COOPERATIVE</dt><dd id="cooperative">CALCULATING</dd></div>
+            <div><dt>RISK</dt><dd id="risk">LOW</dd></div>
+            <div><dt>IDENTITY MATCH</dt><dd id="identity">--%</dd></div>
+          </dl>
+        </aside>
+        <div id="verdict" class="verdict">OBSERVATION ACTIVE</div>
+        <div id="disclaimer" class="disclaimer">SIMULATED INTERPRETATION / NO IDENTITY OR EMOTION IS DETERMINED</div>
+        <footer class="bottom-hud"><span class="live"><i></i>LIVE</span><span>LOCAL PROCESSING</span><strong>NOTHING STORED • NOTHING TRANSMITTED</strong></footer>
+        <div id="noCamera" class="no-camera" hidden>CAMERA NIET ACTIEF<br /><span>HET SYSTEEM OORDEELT TOCH.</span></div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -152,6 +152,14 @@ function visionRoute() {
     </aside>
     <div class="proeftuin-route">
       <div>
+        <span>03 / LIVE EXPERIMENT</span>
+        <strong>Proeftuin 3 — Subject Analysis</strong>
+        <p>Een observatiesysteem dat niet alleen kijkt, maar ook conclusies over je trekt.</p>
+      </div>
+      <a href="/proeftuin-3/">OPEN PROEFTUIN 3 <b aria-hidden="true">→</b></a>
+    </div>
+    <div class="proeftuin-route">
+      <div>
         <span>02 / LIVE EXPERIMENT</span>
         <strong>Proeftuin 2 — Vallende brackets</strong>
         <p>Een interactief werk waarin herkenning losraakt, blijft hangen en uit beeld valt.</p>
