@@ -150,29 +150,29 @@ function visionRoute() {
       <strong id="camera-privacy-title">Niemand kan je zien.</strong>
       <p>Je camerabeeld wordt niet opgenomen, niet gestreamd en niet opgeslagen. De verwerking gebeurt alleen lokaal in je browser. Niemand kijkt mee — ook de maker niet. Alleen jij ziet jezelf op je eigen scherm.</p>
     </aside>
-    <div class="proeftuin-route">
+    <div class="vision-route">
       <div>
-        <span>03 / LIVE EXPERIMENT</span>
-        <strong>Proeftuin 3 — Subject Analysis</strong>
-        <p>Een observatiesysteem dat niet alleen kijkt, maar ook conclusies over je trekt.</p>
+        <span>01 / LIVE EXPERIMENT</span>
+        <strong>Face tracking</strong>
+        <p>Het systeem kijkt en volgt.</p>
       </div>
-      <a href="/proeftuin-3/">OPEN PROEFTUIN 3 <b aria-hidden="true">→</b></a>
+      <a href="#/panoptica-vision">OPEN CAMERA <b aria-hidden="true">→</b></a>
     </div>
     <div class="proeftuin-route">
       <div>
         <span>02 / LIVE EXPERIMENT</span>
         <strong>Proeftuin 2 — Vallende brackets</strong>
-        <p>Een interactief werk waarin herkenning losraakt, blijft hangen en uit beeld valt.</p>
+        <p>De tracking begint te haperen, reageren en uit elkaar te vallen.</p>
       </div>
       <a href="https://studio-jasper-de-langen-portfolio.frf9yr92fq.chatgpt.site/proeftuin-2/">OPEN PROEFTUIN 2 <b aria-hidden="true">→</b></a>
     </div>
-    <div class="vision-route">
+    <div class="proeftuin-route">
       <div>
-        <span>01 / LIVE EXPERIMENT</span>
-        <strong>Panoptica Vision</strong>
-        <p>Live objectherkenning maakt van je camera een observatiesysteem. Beeld blijft op je apparaat.</p>
+        <span>03 / LIVE EXPERIMENT</span>
+        <strong>Proeftuin 3 — Subject Analysis</strong>
+        <p>Het systeem gaat een stap verder en begint te oordelen.</p>
       </div>
-      <a href="#/panoptica-vision">OPEN CAMERA <b aria-hidden="true">→</b></a>
+      <a href="/proeftuin-3/">OPEN PROEFTUIN 3 <b aria-hidden="true">→</b></a>
     </div>
     <a class="secondary-link" href="/experimenten/">BEKIJK ALLE EXPERIMENTEN →</a>`
 }
