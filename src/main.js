@@ -422,6 +422,10 @@ function paintingChapterPage() {
             <img src="/images/pre-panoptica-2024.jpg" alt="Pre-Panoptica, 2024" loading="lazy">
             <figcaption>Pre-Panoptica <span>2024</span></figcaption>
           </figure>
+          <figure class="painting">
+            <img src="/images/zonder-titel-2023-object.jpg" alt="Zonder titel, 2023" loading="lazy">
+            <figcaption>Zonder titel <span>2023</span></figcaption>
+          </figure>
         </section>
 
         <footer class="page-footer">
