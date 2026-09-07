@@ -713,6 +713,12 @@ h1 {
   border: 1px solid rgba(255,255,255,.2);
   background: #111;
 }
+.painting-small {
+  max-width: 415px;
+}
+.painting-small a {
+  display: block;
+}
 .painting-feature {
   display: block;
   width: 100%;

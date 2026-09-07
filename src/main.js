@@ -404,6 +404,12 @@ function paintingChapterPage() {
         </header>
 
         <section class="paintings-grid" aria-label="Schilderijen">
+          <figure class="painting painting-small">
+            <a href="/images/stippelschilderij.png" target="_blank" rel="noopener noreferrer" aria-label="Bekijk Stippelschilderij groter">
+              <img src="/images/stippelschilderij.png" alt="Stippelschilderij" loading="eager">
+            </a>
+            <figcaption>Stippelschilderij <span>Schilderij opgebouwd uit stippen.</span></figcaption>
+          </figure>
           <figure class="painting">
             <img src="/images/jongetje-met-vogel-2020.jpg" alt="Schilderij Jongetje met vogel" loading="eager">
             <figcaption>Jongetje met vogel <span>2020</span></figcaption>
