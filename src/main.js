@@ -403,6 +403,14 @@ function paintingChapterPage() {
             <img src="/images/the-drums-dont-stop-2021.jpg" alt="The Drums Don’t Stop, zelfbeeld bij een drumstel" loading="lazy">
             <figcaption>The Drums Don’t Stop <span>2021</span></figcaption>
           </figure>
+          <figure class="painting">
+            <img src="/images/pik-in-spotlights-2018.jpg" alt="Pik in spotlights" loading="lazy">
+            <figcaption>Pik in spotlights <span>2018</span></figcaption>
+          </figure>
+          <figure class="painting">
+            <img src="/images/zonder-titel-2020.jpg" alt="Zonder titel, 2020" loading="lazy">
+            <figcaption>Zonder titel <span>2020</span></figcaption>
+          </figure>
         </section>
 
         <footer class="page-footer">
