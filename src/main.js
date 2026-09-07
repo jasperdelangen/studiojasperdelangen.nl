@@ -411,6 +411,10 @@ function paintingChapterPage() {
             <img src="/images/zonder-titel-2020.jpg" alt="Zonder titel, 2020" loading="lazy">
             <figcaption>Zonder titel <span>2020</span></figcaption>
           </figure>
+          <figure class="painting">
+            <img src="/images/zonder-titel-2021.jpg" alt="Zonder titel, 2021" loading="lazy">
+            <figcaption>Zonder titel <span>2021</span></figcaption>
+          </figure>
         </section>
 
         <footer class="page-footer">
