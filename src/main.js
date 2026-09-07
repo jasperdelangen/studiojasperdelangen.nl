@@ -436,6 +436,10 @@ function paintingChapterPage() {
             <img src="/images/zonder-titel-2023-object.jpg" alt="Zonder titel, 2023" loading="lazy">
             <figcaption>Zonder titel <span>2023</span></figcaption>
           </figure>
+          <figure class="painting">
+            <img src="/images/zonder-titel-slot.jpg" alt="Zonder titel, kettingen en hangsloten" loading="lazy">
+            <figcaption>Zonder titel</figcaption>
+          </figure>
         </section>
 
         <footer class="page-footer">
