@@ -726,6 +726,14 @@ h1 {
   width: 100%;
   height: auto;
 }
+.drawing-portfolio {
+  margin-top: clamp(60px, 10vw, 150px);
+}
+.drawing-portfolio img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .panoptica-archive-figure {
   margin: clamp(48px, 7vw, 100px) 0;
 }

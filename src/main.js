@@ -55,6 +55,9 @@ const routes = {
   schilderkunst: {
     label: 'Schilderkunst'
   },
+  tekeningen: {
+    label: 'Tekeningen'
+  },
   nieuws: {
     label: 'Nieuws'
   }
@@ -428,6 +431,27 @@ function paintingChapterPage() {
       </main>
     </div>`
 
+  activateMenu()
+}
+
+function drawingChapterPage() {
+  app.innerHTML = `
+    <div class="site-shell paintings-shell">
+      ${navigation('tekeningen')}
+      <main class="paintings-page">
+        <header class="paintings-intro">
+          <p class="eyebrow">STUDIO JASPER DE LANGEN / PORTFOLIO</p>
+          <h1>Tekeningen.</h1>
+        </header>
+        <section class="drawing-portfolio" aria-label="Tekeningen">
+          <img src="/images/tekening-rood-blauw-zwart.jpg" alt="Tekening in rood, blauw en zwart">
+        </section>
+        <footer class="page-footer">
+          <span>© STUDIO JASPER DE LANGEN</span>
+          <span class="live-indicator"><i></i>PORTFOLIO</span>
+        </footer>
+      </main>
+    </div>`
   activateMenu()
 }
 
@@ -992,6 +1016,10 @@ function render() {
   }
   if (route === 'schilderkunst') {
     paintingChapterPage()
+    return
+  }
+  if (route === 'tekeningen') {
+    drawingChapterPage()
     return
   }
   if (routes[route]) {
