@@ -380,6 +380,21 @@ function paintingChapterPage() {
           <p class="intro">Een groeiend hoofdstuk met schilderijen uit de studio. Meer werk volgt.</p>
         </header>
 
+        <section class="paintings-grid" aria-label="Schilderijen">
+          <figure class="painting">
+            <img src="/images/jongetje-met-vogel-2020.jpg" alt="Schilderij Jongetje met vogel" loading="eager">
+            <figcaption>Jongetje met vogel <span>2020</span></figcaption>
+          </figure>
+          <figure class="painting">
+            <img src="/images/mr-likwit-2022.jpg" alt="Schilderij Mr Likwit" loading="lazy">
+            <figcaption>Mr Likwit <span>2022</span></figcaption>
+          </figure>
+          <figure class="painting">
+            <img src="/images/the-drums-dont-stop-2021.jpg" alt="The Drums Don’t Stop, zelfbeeld bij een drumstel" loading="lazy">
+            <figcaption>The Drums Don’t Stop <span>2021</span></figcaption>
+          </figure>
+        </section>
+
         <footer class="page-footer">
           <span>© STUDIO JASPER DE LANGEN</span>
           <span class="live-indicator"><i></i>COLLECTIE IN ONTWIKKELING</span>
