@@ -52,6 +52,9 @@ const routes = {
       'Open een proefopstelling. Sommige experimenten gebruiken je camera of microfoon en vragen daarvoor eerst toestemming.',
     experiments: true
   },
+  fotografie: {
+    label: 'Fotografie'
+  },
   schilderkunst: {
     label: 'Schilderkunst'
   },
@@ -149,6 +152,13 @@ function studioRoutes() {
 function paintingFeature() {
   return `<a class="painting-feature" href="/schilderkunst/" aria-label="Bekijk Painting en de schilderijen">
     <img src="/images/painting-2026.jpg" alt="PAINTING 2026, Jasper de Langen werkt aan een schilderij op de vloer">
+  </a>`
+}
+
+function photographyFeature() {
+  return `<a class="photography-feature" href="/fotografie/" aria-label="Bekijk But before op de fotografiepagina">
+    <img src="/images/but-before.jpg" alt="But before, autonoom fotografisch werk">
+    <span>But before ….</span>
   </a>`
 }
 
@@ -459,6 +469,30 @@ function drawingChapterPage() {
   activateMenu()
 }
 
+function photographyChapterPage() {
+  app.innerHTML = `
+    <div class="site-shell paintings-shell">
+      ${navigation('fotografie')}
+      <main class="paintings-page">
+        <header class="paintings-intro">
+          <p class="eyebrow">STUDIO JASPER DE LANGEN / FOTOGRAFIE</p>
+          <h1>Fotografie.</h1>
+        </header>
+        <section class="photography-portfolio" aria-label="Fotografie">
+          <figure>
+            <img src="/images/but-before.jpg" alt="But before, autonoom fotografisch werk">
+            <figcaption>But before ….</figcaption>
+          </figure>
+        </section>
+        <footer class="page-footer">
+          <span>© STUDIO JASPER DE LANGEN</span>
+          <span class="live-indicator"><i></i>AUTONOOM WERK</span>
+        </footer>
+      </main>
+    </div>`
+  activateMenu()
+}
+
 function standardPage(key) {
   const route = routes[key]
   app.innerHTML = `
@@ -486,7 +520,7 @@ function standardPage(key) {
                 </a>`
           }
         </section>
-        ${key === 'home' ? paintingFeature() : ''}
+        ${key === 'home' ? photographyFeature() + paintingFeature() : ''}
         <footer class="page-footer">
           <span>© STUDIO JASPER DE LANGEN</span>
           <span class="live-indicator"><i></i>SIGNAL ACTIVE</span>
@@ -1016,6 +1050,10 @@ function render() {
   }
   if (route === 'over') {
     overPage()
+    return
+  }
+  if (route === 'fotografie') {
+    photographyChapterPage()
     return
   }
   if (route === 'schilderkunst') {

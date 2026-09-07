@@ -726,6 +726,13 @@ h1 {
   width: 100%;
   height: auto;
 }
+.photography-feature { display:block; width:100%; color:inherit; text-decoration:none; background:#050505; }
+.photography-feature img { display:block; width:100%; height:auto; }
+.photography-feature span { display:block; padding:18px clamp(20px,4vw,64px) 34px; font-family:var(--mono); font-size:clamp(1rem,2vw,1.6rem); }
+.photography-portfolio { margin-top:clamp(60px,10vw,150px); }
+.photography-portfolio figure { margin:0; }
+.photography-portfolio img { display:block; width:100%; height:auto; }
+.photography-portfolio figcaption { margin-top:18px; font-family:var(--mono); font-size:clamp(1rem,2vw,1.6rem); }
 .drawing-portfolio {
   margin-top: clamp(60px, 10vw, 150px);
 }
