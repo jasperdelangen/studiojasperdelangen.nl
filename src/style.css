@@ -713,6 +713,44 @@ h1 {
   border: 1px solid rgba(255,255,255,.2);
   background: #111;
 }
+.painting-feature {
+  display: block;
+  width: 100%;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: #050505;
+  overflow: hidden;
+}
+.painting-feature img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.panoptica-archive-figure {
+  margin: clamp(48px, 7vw, 100px) 0;
+}
+.panoptica-archive-figure img {
+  display: block;
+  width: 100%;
+  max-height: 1100px;
+  object-fit: contain;
+  object-position: center;
+  background: #090909;
+}
+.panoptica-archive-figure figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.panoptica-archive-figure figcaption em { color: rgba(255,255,255,.48); font-style: italic; }
+@media (max-width: 850px) {
+  .panoptica-archive-figure figcaption { align-items: flex-start; flex-direction: column; gap: 7px; }
+}
 
 .painting figcaption {
   display: flex;

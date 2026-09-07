@@ -143,6 +143,12 @@ function studioRoutes() {
     </div>`
 }
 
+function paintingFeature() {
+  return `<a class="painting-feature" href="/schilderkunst/" aria-label="Bekijk Painting en de schilderijen">
+    <img src="/images/painting-2026.jpg" alt="PAINTING 2026, Jasper de Langen werkt aan een schilderij op de vloer">
+  </a>`
+}
+
 function visionRoute() {
   return `
     <aside class="camera-privacy" aria-labelledby="camera-privacy-title">
@@ -256,6 +262,10 @@ function panopticaPage() {
                 <p>Panoptica wordt ontwikkeld als een modulair werk. Experimenten met beeld, geluid, camera’s, objectdetectie en interactieve systemen worden samengebracht tot één omgeving.</p>
                 <p>Een deel van dat ontwikkelproces is zichtbaar in de <a href="/proeftuin/">Panoptica Proeftuin</a>. Daar worden experimenten en technische onderzoeken getoond zonder de uiteindelijke ervaring van de installatie prijs te geven.</p>
               </div>
+              <figure class="panoptica-archive-figure">
+                <img src="/images/panoptica-in-het-begin.jpg" alt="Vroege verticale opstelling van Panoptica met camerakoppen en kabels">
+                <figcaption><strong>Panoptica, in het begin</strong><em>Vroege opstelling / experiment</em></figcaption>
+              </figure>
               <a class="primary-link" href="/proeftuin/">
                 <span>Open de Proeftuin</span><span aria-hidden="true">→</span>
               </a>
@@ -432,6 +442,7 @@ function standardPage(key) {
                 </a>`
           }
         </section>
+        ${key === 'home' ? paintingFeature() : ''}
         <footer class="page-footer">
           <span>© STUDIO JASPER DE LANGEN</span>
           <span class="live-indicator"><i></i>SIGNAL ACTIVE</span>
