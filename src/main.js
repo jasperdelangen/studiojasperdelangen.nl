@@ -423,16 +423,8 @@ function paintingChapterPage() {
             <figcaption>The Drums Don’t Stop <span>2021</span></figcaption>
           </figure>
           <figure class="painting">
-            <img src="/images/pik-in-spotlights-2018.jpg" alt="Pik in spotlights" loading="lazy">
-            <figcaption>Pik in spotlights <span>2018</span></figcaption>
-          </figure>
-          <figure class="painting">
             <img src="/images/zonder-titel-2020.jpg" alt="Zonder titel, 2020" loading="lazy">
             <figcaption>Zonder titel <span>2020</span></figcaption>
-          </figure>
-          <figure class="painting">
-            <img src="/images/zonder-titel-2021.jpg" alt="Zonder titel, 2021" loading="lazy">
-            <figcaption>Zonder titel <span>2021</span></figcaption>
           </figure>
           <figure class="painting">
             <img src="/images/pre-panoptica-2024.jpg" alt="Pre-Panoptica, 2024" loading="lazy">
