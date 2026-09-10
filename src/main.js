@@ -253,7 +253,7 @@ function panopticaPage() {
 
             <section aria-labelledby="geen-demo">
               <p class="section-index">03 / MATERIAAL</p>
-              <h2 id="geen-demo">Geen technologiedemonstratie</h2>
+              <h2 id="geen-demo">Geen technologie&shy;demonstratie</h2>
               <div class="story-copy">
                 <p>De techniek is nadrukkelijk niet het onderwerp op zichzelf. Camera’s, computers en algoritmen zijn het materiaal waarmee Panoptica wordt gebouwd, zoals een schilder verf gebruikt of een fotograaf licht.</p>
                 <p>Soms werkt een systeem nauwkeurig. Soms twijfelt het. Soms ziet het iets wat er niet is of verliest het juist iets wat recht voor de camera staat. Ook die fouten zijn interessant.</p>

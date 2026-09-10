@@ -305,11 +305,14 @@ button {
 }
 
 .story-content h2 {
+  min-width: 0;
   margin: 0;
   font-size: clamp(26px, 4vw, 54px);
   font-weight: 400;
   line-height: .98;
   letter-spacing: -.06em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .story-copy {
