@@ -467,6 +467,9 @@ function drawingChapterPage() {
 function photographyChapterPage() {
   app.innerHTML = `
     <div class="site-shell paintings-shell">
+      <video class="noise-video" autoplay muted loop playsinline aria-hidden="true">
+        <source src="/noise-background.mp4" type="video/mp4">
+      </video>
       ${navigation('fotografie')}
       <main class="paintings-page">
         <header class="paintings-intro">
