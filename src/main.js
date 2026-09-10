@@ -155,13 +155,6 @@ function paintingFeature() {
   </a>`
 }
 
-function photographyFeature() {
-  return `<a class="photography-feature" href="/fotografie/" aria-label="Bekijk But before op de fotografiepagina">
-    <img src="/images/but-before.jpg" alt="But before, autonoom fotografisch werk">
-    <span>But before ….</span>
-  </a>`
-}
-
 function visionRoute() {
   return `
     <aside class="camera-privacy" aria-labelledby="camera-privacy-title">
@@ -480,12 +473,6 @@ function photographyChapterPage() {
           <p class="eyebrow">STUDIO JASPER DE LANGEN / FOTOGRAFIE</p>
           <h1>Fotografie.</h1>
         </header>
-        <section class="photography-portfolio" aria-label="Fotografie">
-          <figure>
-            <img src="/images/but-before.jpg" alt="But before, autonoom fotografisch werk">
-            <figcaption>But before ….</figcaption>
-          </figure>
-        </section>
         <footer class="page-footer">
           <span>© STUDIO JASPER DE LANGEN</span>
           <span class="live-indicator"><i></i>AUTONOOM WERK</span>
@@ -522,7 +509,7 @@ function standardPage(key) {
                 </a>`
           }
         </section>
-        ${key === 'home' ? photographyFeature() + paintingFeature() : ''}
+        ${key === 'home' ? paintingFeature() : ''}
         <footer class="page-footer">
           <span>© STUDIO JASPER DE LANGEN</span>
           <span class="live-indicator"><i></i>SIGNAL ACTIVE</span>
