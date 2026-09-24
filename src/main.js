@@ -186,6 +186,14 @@ function visionRoute() {
       </div>
       <a href="/proeftuin-3/">OPEN PROEFTUIN 3 <b aria-hidden="true">→</b></a>
     </div>
+    <div class="proeftuin-route">
+      <div>
+        <span>04 / LIVE EXPERIMENT</span>
+        <strong>Proeftuin 4 — Expressieclassificatie</strong>
+        <p>Zeven woorden, nerveuze percentages en geen toegang tot wat je werkelijk voelt.</p>
+      </div>
+      <a href="https://studio-jasper-de-langen-portfolio.frf9yr92fq.chatgpt.site/proeftuin-4/">OPEN PROEFTUIN 4 <b aria-hidden="true">→</b></a>
+    </div>
     <a class="secondary-link" href="/experimenten/">BEKIJK ALLE EXPERIMENTEN →</a>`
 }
 
