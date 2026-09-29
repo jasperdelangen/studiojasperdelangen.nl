@@ -285,8 +285,18 @@ function panopticaPage() {
               </a>
             </section>
 
+            <section class="panoptica-news" aria-labelledby="panoptica-nieuws">
+              <p class="section-index">05 / NIEUWS</p>
+              <h2 id="panoptica-nieuws">Nieuws onder observatie</h2>
+              <p class="story-copy">Wat buiten de installatie gebeurt, hoort ook bij Panoptica. Hier staat het laatste bericht over surveillance, beeld en de systemen die ons bekijken.</p>
+              <div id="panoptica-news-list" class="news-grid" aria-live="polite"><p class="news-loading">NIEUWS WORDT GELADEN…</p></div>
+              <a class="primary-link" href="/nieuws/">
+                <span>Bekijk alle nieuwsberichten</span><span aria-hidden="true">→</span>
+              </a>
+            </section>
+
             <section class="project-summary" aria-labelledby="projectsamenvatting">
-              <p class="section-index">05 / VOOR PROGRAMMEURS, CURATOREN, ORGANISATOREN &amp; PERS</p>
+              <p class="section-index">06 / VOOR PROGRAMMEURS, CURATOREN, ORGANISATOREN &amp; PERS</p>
               <h2 id="projectsamenvatting">Projectsamenvatting</h2>
               <div class="story-copy">
                 <p>Panoptica is een interactieve kunstinstallatie van multidisciplinair kunstenaar Jasper de Langen, ontwikkeld binnen Studio Jasper de Langen. Het werk onderzoekt hoe onze verhouding tot beelden verandert nu camera’s niet alleen registreren, maar computers beelden ook classificeren, interpreteren en er conclusies aan verbinden. In een fysieke omgeving van camera’s, beeldschermen, software, geluid en andere elementen verschuift de bezoeker van toeschouwer naar waargenomen deelnemer. Panoptica benadert surveillance niet als een uitsluitend technisch of privacygericht onderwerp, maar als een culturele en lichamelijke ervaring rond waarneming, interpretatie en macht. De technologie fungeert daarbij als artistiek materiaal, inclusief twijfel, misinterpretatie en systeemfouten. Het modulaire werk is in ontwikkeling en wordt gevoed door experimenten met onder meer objectdetectie, interactie, beeld en geluid. Een selectie van het onderzoeksproces is zichtbaar in de Panoptica Proeftuin, zonder de uiteindelijke installatie-ervaring of haar verrassingen vooraf prijs te geven.</p>
@@ -294,7 +304,7 @@ function panopticaPage() {
             </section>
 
             <aside class="practical-info" aria-labelledby="praktische-informatie">
-              <p class="section-index">06 / PRAKTISCH</p>
+              <p class="section-index">07 / PRAKTISCH</p>
               <h2 id="praktische-informatie">Praktische informatie</h2>
               <dl>
                 <div><dt>Status</dt><dd>In ontwikkeling</dd></div>
@@ -313,6 +323,19 @@ function panopticaPage() {
     </div>`
 
   activateMenu()
+  const newsList = document.querySelector('#panoptica-news-list')
+  loadNews()
+    .then(({ articles }) => {
+      if (!newsList.isConnected) return
+      newsList.innerHTML = articles.length
+        ? newsCard(articles[0], articles.length)
+        : '<p class="news-loading">Er zijn nog geen nieuwsberichten.</p>'
+    })
+    .catch(() => {
+      if (newsList.isConnected) {
+        newsList.innerHTML = '<p class="news-loading">Het nieuws kon niet worden geladen. Open het nieuwsarchief via de link hieronder.</p>'
+      }
+    })
 }
 
 function overPage() {
