@@ -776,6 +776,15 @@ h1 {
   .panoptica-archive-figure figcaption { align-items: flex-start; flex-direction: column; gap: 7px; }
 }
 
+.panoptica-news .news-grid {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 680px;
+  margin: 30px 0;
+}
+.panoptica-news .news-media { aspect-ratio: 16 / 9; }
+.panoptica-news .news-loading { padding: 24px; }
+.panoptica-news .story-copy { max-width: 680px; }
+
 .painting figcaption {
   display: flex;
   justify-content: space-between;
