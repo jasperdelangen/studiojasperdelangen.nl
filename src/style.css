@@ -1067,6 +1067,13 @@ h1 {
   object-fit: contain;
 }
 
+.news-caption {
+  padding: 10px 14px;
+  color: rgba(255,255,255,.58);
+  font-size: 11px;
+  letter-spacing: .06em;
+}
+
 .article-copy {
   width: min(100%, 760px);
   margin-left: auto;

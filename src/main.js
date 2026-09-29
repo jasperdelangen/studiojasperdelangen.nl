@@ -610,6 +610,7 @@ function newsMedia(item, detail = false) {
   return `
     <figure class="news-media ${detail ? 'detail-media' : ''}">
       <img src="${item.src}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async">
+      ${detail && item.caption ? `<figcaption class="news-caption">${escapeHtml(item.caption)}</figcaption>` : ''}
     </figure>`
 }
 
